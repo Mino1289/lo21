@@ -13,3 +13,8 @@ int D_cmp(Data d1, Data d2) {
         return 0;
     }
 }
+
+void D_free(Data *d) {
+    // do nothing for now...
+}
+

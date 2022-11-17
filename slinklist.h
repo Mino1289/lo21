@@ -16,9 +16,13 @@ typedef SL_element* SL_list;
 
 void SL_print(SL_list l);
 
-int size(SL_list l);
+void SL_free(SL_list l);
 
-bool contains(SL_list l, Data d);
+int SL_size(SL_list l);
+
+int SL_count(SL_list l, Data d);
+
+bool SL_contains(SL_list l, Data d);
 
 SL_list SL_insert_head(SL_list l, Data d);
 
@@ -30,7 +34,7 @@ SL_list SL_remove_tail(SL_list l);
 
 SL_list merge_sorted_lists(SL_list l1, SL_list l2);
 
-void sort_list(SL_list l);
+void SL_sort_list(SL_list l);
 
 
 #endif

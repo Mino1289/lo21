@@ -7,21 +7,37 @@ void SL_print(SL_list l) {
     }
 }
 
-int size(SL_list l) {
+void SL_free(SL_list l) {
+    D_free(&HEAD(l));
+    free(l);
+}
+
+int SL_size(SL_list l) {
     if (EMPTY(l)) {
         return 0;
     }
-    return 1 + size(l->next);
+    return 1 + SL_size(l->next);
 }
 
-bool contains(SL_list l, Data d) {
+int SL_count(SL_list l, Data d) {
+    if (EMPTY(l)) {
+        return 0;
+    }
+    if (D_cmp(HEAD(l), d) == 0) {
+        return 1 + SL_count(l->next, d);
+    } else {
+        return SL_count(l->next, d);
+    }
+}
+
+bool SL_contains(SL_list l, Data d) {
     if (EMPTY(l)) {
         return false;
     }
     if (D_cmp(HEAD(l), d) == 0) {
         return true;
     }
-    return contains(l->next, d);
+    return SL_contains(l->next, d);
 }
 
 SL_list SL_insert_head(SL_list l, Data d) {
@@ -52,7 +68,7 @@ SL_list SL_remove_head(SL_list l) {
         return NULL;
     } else {
         SL_list tmp = REST(l);
-        free(l);
+        SL_free(l);
         return tmp;
     }
 }
@@ -61,14 +77,14 @@ SL_list SL_remove_tail(SL_list l) {
     if (EMPTY(l)) {
         return NULL;
     } else if (EMPTY(REST(l))) {
-        free(l);
+        SL_free(l);
         return NULL;
     } else {
         SL_list tmp = l;
         while (!EMPTY(REST(REST(l)))) {
             tmp = REST(tmp);
         }
-        free(REST(tmp));
+        SL_free(REST(tmp));
         REST(tmp) = NULL;
         return l;
     }
@@ -98,7 +114,7 @@ SL_list merge_sorted_lists(SL_list l1, SL_list l2) {
     return new;
 }
 
-void sort_list(SL_list l) {
+void SL_sort_list(SL_list l) {
     bool inv = false;
     SL_list p = l;
     SL_list f = NULL;

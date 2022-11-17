@@ -31,5 +31,6 @@ void D_print(Data d);
 
 int D_cmp(Data d1, Data d2);
 
+void D_free(Data *d);
 
 #endif
