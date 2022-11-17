@@ -37,4 +37,4 @@ SL_list merge_sorted_lists(SL_list l1, SL_list l2);
 void SL_sort_list(SL_list l);
 
 
-#endif
+#endif // __SLINKLIST_H__
