@@ -10,6 +10,7 @@
 #define MIN(a, b)   ((a) < (b) ? (a) : (b))
 #define SWAP(a, b, T)  {T tmp = a; a = b; b = tmp;}
 
+#define EMPTY(a) (!a)
 #define VALUE(d)    (d.value)
 
 #ifdef DEBUG

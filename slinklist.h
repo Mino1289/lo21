@@ -3,7 +3,6 @@
 
 #include <base.h>
 
-#define EMPTY(l) (!l)
 #define REST(l) (l->next)
 #define HEAD(l) (l->data)
 
